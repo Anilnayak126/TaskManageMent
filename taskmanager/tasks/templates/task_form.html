@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Create/Edit Task - TaskManager{% endblock %}
+
+{% block content %}
+    <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg mt-10">
+        <h2 class="text-3xl font-semibold text-gray-800 text-center mb-6">
+            {% if task %}
+                Edit Task
+            {% else %}
+                Create a New Task
+            {% endif %}
+        </h2>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Title Input -->
+            <div class="mb-4">
+                <label for="id_title" class="block text-lg font-medium text-gray-700">Title</label>
+                <input type="text" name="title" id="id_title" 
+                    {% if task %}
+                        value="{{ task.title }}"
+                    {% else %}
+                        value=""
+                    {% endif %}
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm">
+            </div>
+
+            <!-- Description Textarea -->
+            <div class="mb-4">
+                <label for="id_description" class="block text-lg font-medium text-gray-700">Description</label>
+                <textarea name="description" id="id_description" rows="6" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm">
+                    {% if task %}
+                        {{ task.description }}
+                    {% else %}
+                        ""
+                    {% endif %}
+                </textarea>
+            </div>
+
+            <!-- Error Message -->
+            {% if error %}
+                <div class="text-red-500 text-sm mb-4">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                    {% if task %}
+                        Update Task
+                    {% else %}
+                        Create Task
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

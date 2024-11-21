@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TaskManager{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    {% load socialaccount %}
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div>
+                <a href="/" class="text-2xl font-bold text-blue-600 hover:text-blue-800 transition-all duration-300">TaskManager</a>
+            </div>
+
+            <!-- Navigation Links (Desktop) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Home</a>
+                <a href="/tasks/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Tasks</a>
+            </div>
+
+            <!-- Hamburger Menu (Mobile) -->
+            <div class="md:hidden flex items-center">
+                <button class="text-gray-700 hover:text-blue-600 focus:outline-none" id="hamburger-icon">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Authentication Buttons -->
+            <div>
+                {% if user.is_authenticated %}
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-700 text-sm">Hello, <strong>{{ user.first_name }}</strong></span>
+                        <a href="{% url 'logout' %}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300">
+                            Logout
+                        </a>
+                    </div>
+                {% else %}
+                    <a href="{% provider_login_url 'google' %}?next=/" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                        Login with Google
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="flex flex-col items-center space-y-4 py-4">
+                <a href="/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Home</a>
+                <a href="/tasks/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Tasks</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-10">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+
+</html>

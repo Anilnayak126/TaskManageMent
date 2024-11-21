@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>google sign in</title>
-</head>
-<body>
-    {% load socialaccount %}
-    <h2>google Login</h2>
-    <a href="{% provider_login_url 'google' %}?next=/">Login with google</a>
+{% extends 'base.html' %}
 
-    {% if user.is_authenticated %}
-    <p>user are signed in as {{user.email}}</p>
-    <a href="logout">logout</a>
-    {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
-    {% endif %}
-</body>
-</html>
+{% block title %}Home - TaskManager{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h2 class="text-4xl font-semibold text-gray-800">Welcome to TaskManager</h2>
+        <p class="mt-4 text-lg text-gray-600">Manage your tasks efficiently with our simple and intuitive interface.</p>
+
+        {% if user.is_authenticated %}
+            <p class="mt-4 text-xl text-gray-700">You are logged in as: <strong>{{ user.email }}</strong></p>
+        {% else %}
+            <p class="mt-4 text-lg text-gray-600">Please log in to manage your tasks.</p>
+        {% endif %}
+    </div>
+{% endblock %}
