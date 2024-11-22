@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,46 +18,83 @@
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <!-- Logo -->
             <div>
-                <a href="/" class="text-2xl font-bold text-blue-600 hover:text-blue-800 transition-all duration-300">TaskManager</a>
+                <a href="/" class="text-2xl font-bold text-blue-600 hover:text-blue-800 transition-all duration-300">
+                    TaskManager
+                </a>
             </div>
 
-            <!-- Navigation Links (Desktop) -->
-            <div class="hidden md:flex space-x-8">
-                <a href="/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Home</a>
-                <a href="/tasks/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Tasks</a>
-            </div>
-
-            <!-- Hamburger Menu (Mobile) -->
-            <div class="md:hidden flex items-center">
-                <button class="text-gray-700 hover:text-blue-600 focus:outline-none" id="hamburger-icon">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 ml-1">Home</a>
+                <a href="/tasks/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 ml-1">Tasks</a>
+                {% if user.is_staff %}
+                <a href="{% url 'send_invitation' %}" class="text-gray-700 hover:text-blue-600 transition-all duration-300">
+                    Send Invitation
+                </a>
+                {% endif %}
             </div>
 
             <!-- Authentication Buttons -->
-            <div>
+            <div class="hidden md:flex items-center space-x-4">
                 {% if user.is_authenticated %}
-                    <div class="flex items-center space-x-4">
-                        <span class="text-gray-700 text-sm">Hello, <strong>{{ user.first_name }}</strong></span>
-                        <a href="{% url 'logout' %}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300">
-                            Logout
-                        </a>
-                    </div>
+                <span class="text-gray-700 text-sm">
+                    Hello, 
+                    {% if user.is_staff %}
+                    Admin 
+                    {% endif %}
+                    <strong>{{ user.first_name }}</strong>
+                </span>
+                <a href="{% url 'logout' %}"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300">
+                    Logout
+                </a>
                 {% else %}
-                    <a href="{% provider_login_url 'google' %}?next=/" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">
-                        Login with Google
-                    </a>
+                <a href="{% provider_login_url 'google' %}?next=/"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                    Login with Google
+                </a>
                 {% endif %}
+            </div>
+
+            <!-- Hamburger Menu (Mobile) -->
+            <div class="md:hidden">
+                <button class="text-gray-700 hover:text-blue-600 focus:outline-none" id="hamburger-icon">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
 
         <!-- Mobile Menu (Dropdown) -->
         <div class="md:hidden hidden" id="mobile-menu">
-            <div class="flex flex-col items-center space-y-4 py-4">
-                <a href="/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Home</a>
-                <a href="/tasks/" class="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Tasks</a>
+            <div class="flex flex-col items-center space-y-4 py-4 bg-gray-100">
+                <a href="/" class="text-gray-700 hover:text-blue-600 transition-all duration-300">Home</a>
+                <a href="/tasks/" class="text-gray-700 hover:text-blue-600 transition-all duration-300">Tasks</a>
+                {% if user.is_staff %}
+                <a href="{% url 'send_invitation' %}"
+                    class="text-gray-700 hover:text-blue-600 transition-all duration-300">Send Invitation</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <span class="text-gray-700 text-sm">
+                    Hello, 
+                    {% if user.is_staff %}
+                    Admin 
+                    {% endif %}
+                    <strong>{{ user.first_name }}</strong>
+                </span>
+                <a href="{% url 'logout' %}"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300">
+                    Logout
+                </a>
+                {% else %}
+                <a href="{% provider_login_url 'google' %}?next=/"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                    Login with Google
+                </a>
+                {% endif %}
             </div>
         </div>
     </nav>

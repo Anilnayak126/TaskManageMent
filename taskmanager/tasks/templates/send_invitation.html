@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Invitation</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <style>
+        /* Ensure body and html occupy full height */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 h-screen flex items-center justify-center font-sans">
+
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md mx-auto">
+        <h1 class="text-2xl font-bold text-blue-600 text-center mb-6">Send Invitation</h1>
+
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            
+            <!-- Email Input -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Recipient Email</label>
+                <input type="email" name="email" id="email" required 
+                    class="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                Send Invitation
+            </button>
+        </form>
+
+        <!-- Error Message -->
+        {% if error %}
+        <div class="mt-4 p-2 bg-red-100 text-red-700 rounded-lg">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Back Link -->
+        <div class="text-center mt-6">
+            <a href="/" class="text-blue-600 hover:underline text-sm">Back to Home</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

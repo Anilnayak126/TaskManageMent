@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Invitation - Google Registration</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+
+<body class="bg-gray-100 h-screen flex items-center justify-center font-sans">
+
+    <!-- Invitation Container -->
+    <div class="bg-white shadow-md rounded-lg p-8 max-w-sm w-full">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">You've Been Invited!</h1>
+            <p class="text-gray-600 mt-2">The admin has invited you to join. Please register with your Google account to get started.</p>
+        </div>
+
+        <!-- Google Registration Button -->
+        <div class="flex justify-center mt-6">
+            <a href="{% url 'account_login' %}?next={{ request.path }}" class="flex items-center px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-400 transition duration-300">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path fill="#EA4335" d="M24 9.5c3.4 0 6.1 1.1 8.1 3.1l6.1-6.1C34.6 3.3 29.6 1 24 1 14.5 1 6.4 6.8 3.2 14.7l7.2 5.6C12.2 13.3 17.6 9.5 24 9.5z" />
+                    <path fill="#34A853" d="M9.3 20.3c-1.1-3.3-1.1-6.8 0-10l-7.2-5.6C0 8.4 0 11.8 0 15.1c0 3.3 1.1 6.6 3.2 9.3l7.2-5.6z" />
+                    <path fill="#4A90E2" d="M24 46.9c5.4 0 10.1-1.8 13.7-4.7l-7-5.6c-1.9 1.4-4.5 2.1-6.8 2.1-5.4 0-10-3.6-11.6-8.4l-7.2 5.6C6.4 42.6 14.5 46.9 24 46.9z" />
+                    <path fill="#FBBC04" d="M46.8 20.3H24v8.6h12.8c-1.7 4.2-5.7 7.4-10.8 7.4-5.4 0-10.3-3.6-12-8.4l-7.2 5.6C8.6 37.5 15.5 42 24 42c11.1 0 20-9.3 20-20 0-1.3-.1-2.5-.4-3.7z" />
+                </svg>
+                Register with Google
+            </a>
+        </div>
+
+        <!-- Manage Tasks Section -->
+        <div class="text-center mt-8">
+            <p class="text-gray-600 text-sm">
+                Once registered, you can manage your tasks and collaborate efficiently.
+            </p>
+        </div>
+
+       
+    </div>
+
+</body>
+
+</html>
