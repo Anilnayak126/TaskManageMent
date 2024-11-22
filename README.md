@@ -62,8 +62,8 @@ This project is a Task Management application built with Django, featuring Googl
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/task-management-app.git
-    cd task-management-app
+    https://github.com/Anilnayak126/TaskManagement.git
+    cd TaskManagement
     ```
 
 2. Create a virtual environment and activate it:
