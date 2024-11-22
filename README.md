@@ -89,7 +89,7 @@ This project is a Task Management application built with Django, featuring Googl
 
 ## Configuration
 
-1. Set up your Google OAuth credentials in the Django settings:
+1. Set up your Google OAuth credentials in the Django models socialaccountsModel:
     ```python
     SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your-client-id'
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your-client-secret'
