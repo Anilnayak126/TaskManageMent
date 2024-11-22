@@ -5,8 +5,7 @@ This project is a Task Management application built with Django, featuring Googl
 ![Project Screenshot](taska_m.png)
 
 
-![Live Video Link](https://drive.google.com/file/d/10OjobzhqZJq5tYDc1FEe0qhbOgcSE907/view?usp=sharing)
-<a href="https://drive.google.com/file/d/10OjobzhqZJq5tYDc1FEe0qhbOgcSE907/view?usp=sharing" target="_blank">Watch the Video</a>
+<a href="https://drive.google.com/file/d/10OjobzhqZJq5tYDc1FEe0qhbOgcSE907/view?usp=sharing" target="_blank">🎥Watch the Video</a>
 
 
 
