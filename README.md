@@ -2,6 +2,8 @@
 
 This project is a Task Management application built with Django, featuring Google OAuth2 for user authentication. It was developed as an assessment project.
 
+![Project Screenshot](taska_m.png)
+
 ## Project Setup
 
 ### Django Project
